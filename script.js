@@ -149,7 +149,7 @@ function respond(question){
           speak("Timer "+minutes+" minutes.");
           break;
         case 2:
-          speak("Okay, your timer is set to "+minutes+" minutes. Starting now.");
+          speak("Okay, your timer is set to "+ minutes +" minutes. Starting now.");
           break;
       }
       break;
@@ -159,10 +159,10 @@ function respond(question){
           speak("Okay.");
           break;
         case 1:
-          speak("Get Cake," + day +" "+ hour + AMPM + ".");
+          speak("Get Cake," + hour + AMPM + ".");
           break;
         case 2:
-          speak("Okay, I'll remind you to Get Cake on " + day +" at "+ hour + AMPM + ".");
+          speak("Okay, I'll remind you to Get Cake at "+ hour + AMPM + ".");
           break;
       }
       break;
@@ -234,9 +234,3 @@ function play(){
 }
 
 Asking.addEventListener('click', listen);
-
-window.addEventListener("load", function(event) {
-  questionContainer = document.getElementsByClassName("question-title-container").item(0);
-  answerOptions = document.getElementsByClassName("answer-container").item(0);
-  answerOptions.style.display = 'none';
-});
