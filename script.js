@@ -77,6 +77,33 @@ function speak(utterance){
   console.log("Speaking started:"+utterance);
 }
 
+function speakMusic(utterance){
+  var utterThis = new SpeechSynthesisUtterance(utterance);
+  var voiceList = synthesis.getVoices();
+  var i;
+  for (i = 0; i < voiceList.length; i++) {
+  	if(voiceList[i].name=="Google UK English Female"){
+      console.log(voiceList[i].name);
+      break;
+    }
+  }
+
+  utterThis.voice = voiceList[i];
+
+  utterThis.onend = function (event) {
+    console.log("Finished speaking.");
+    play();
+  }
+
+  utterThis.onerror = function (event) {
+    console.log("Error: "+event.name);
+  }
+
+  utterThis.lang = 'en-UK';
+  synthesis.speak(utterThis);
+  console.log("Speaking started.");
+}
+
 function respond(question){
   var response_style;
   var radioButtons = document.getElementsByName("response_style");
@@ -131,11 +158,11 @@ function respond(question){
           play();
           break;
         case 1:
-          speak("Rafael - Ukulele song.");
+          speakMusic("Rafael - Ukulele song.");
           play();
           break;
         case 2:
-          speak("Sure, playing Ukulele song by Rafael for you.");
+          speakMusic("Sure, playing Ukulele song by Rafael for you.");
           play();
           break;
       }
