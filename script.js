@@ -159,11 +159,9 @@ function respond(question){
           break;
         case 1:
           speakMusic("Rafael - Ukulele song.");
-          play();
           break;
         case 2:
           speakMusic("Sure, playing Ukulele song by Rafael for you.");
-          play();
           break;
       }
       break;
