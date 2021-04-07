@@ -39,15 +39,16 @@ function listen() {
   	}
 
     recognition.onspeechend = function() {
-      recognition.stop();
-      Asking.textContent = 'Click to ask.';
-      Asking.disabled = false;
+	    recognition.stop();
+	    Asking.textContent = 'Click to ask.';
+	    Asking.disabled = false;
     }
 
     recognition.onerror = function(event) {
-      Asking.textContent = 'Click to ask.';
-      Asking.disabled = false;
-      speak("Error. Please try again.");
+	    Asking.textContent = 'Click to ask.';
+	    Asking.disabled = false;
+	    if (browser != "Google Chrome") speak ("Error. Try opening in Chrome browser.");
+	    else speak("Recognition error. Please try again.");
     }
 }
 
@@ -119,13 +120,37 @@ function respond(question){
   else if(question.includes('timer')){
     task = 2;
     minutes = question.match(/\d+/);
+	if(hour == null){
+	switch(response_style) {
+        case 0:
+          speak("Minutes missing.");
+          break;
+        case 1:
+          speak("Timer: minutes missing.");
+          break;
+        case 2:
+          speak("The minutes were missing for your timer. Please try again.");
+          break;
+      }    
+      return;
+    }
   }
   else if(question.includes('remind')){
     task = 3;
     hour = null;
     hour = question.match(/\d+/);
     if(hour == null){
-      speak("Repeat and provide time.");
+	switch(response_style) {
+        case 0:
+          speak("Time missing.");
+          break;
+        case 1:
+          speak("Reminder: Time missing.");
+          break;
+        case 2:
+          speak("The time was missing for your reminder. Please try again.");
+          break;
+      }    
       return;
     }
     if(question.includes("a.m.")) AMPM = "AM";
@@ -246,10 +271,19 @@ function respond(question){
           speak("The total size of the US population amounts to 328 million.");
           break;
       }  
-      
       break;
     default:
-      speak("Sorry, I did not understand. Please repeat your request.");
+	switch(response_style) {
+        case 0:
+          speak("Did not understand.");
+          break;
+        case 1:
+          speak("Did not understand. Try again.");
+          break;
+        case 2:
+          speak("Sorry, I did not understand. Please repeat your request.");
+          break;
+      
   }
 }
 
