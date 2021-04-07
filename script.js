@@ -47,8 +47,12 @@ function listen() {
     recognition.onerror = function(event) {
 	    Asking.textContent = 'Click to ask.';
 	    Asking.disabled = false;
-	    if (browser != "Google Chrome") speak ("Error. Try opening in Chrome browser.");
-	    else speak("Recognition error. Please try again.");
+	    if (browser != "Google Chrome") {
+			speak ("Error. Try opening in Chrome browser.");
+		}
+	    else {
+			speak("Recognition error. Please try again.");
+		}
     }
 }
 
@@ -120,7 +124,7 @@ function respond(question){
   else if(question.includes('timer')){
     task = 2;
     minutes = question.match(/\d+/);
-	if(hour == null){
+	if(minutes == null){
 	switch(response_style) {
         case 0:
           speak("Minutes missing.");
