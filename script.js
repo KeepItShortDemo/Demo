@@ -283,7 +283,7 @@ function respond(question){
         case 2:
           speak("Sorry, I did not understand. Please repeat your request.");
           break;
-      
+	}
   }
 }
 
