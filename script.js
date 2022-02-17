@@ -292,7 +292,7 @@ function respond(question){
 }
 
 function play(){
-  var audio = new Audio('https://surveys.informatik.uni-ulm.de/limesurvey/upload/surveys/413399/files/UkuleleSong_short.mp3');
+  var audio = new Audio('UkuleleSong_short.mp3');
   audio.play();
 }
 
